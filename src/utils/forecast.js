@@ -29,7 +29,7 @@ module.exports=forecast*/
 const request = require('request')
 
 const forecast = (latitude, longitude, callback) => {
-    const url =' http://api.weatherstack.com/current?access_key=3830673069b6f2106e2d1929130030dd&query=india,usa,bostan&units=f'
+    const url =' http://api.weatherstack.com/current?access_key=3830673069b6f2106e2d1929130030dd&query=query=37.765,-122.241&units=f'
 
     request({ url,json: true }, (error,{body}) => {
         if (error) {
@@ -37,12 +37,11 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('Unable to find location', undefined)
         } else {
-           callback(undefined, body.current.weather_descriptions[0]+ '. its currently' +body.current.temperature+ 'degree temperatur.  it feels like' +body.current.feelslike +'  % the rain '+'and humidity is'+body.current.humidity)
+            
+           callback(undefined, body.current.weather_descriptions[0]+ '. its currently' +body.current.temperature+ 'degree temperatur.  it feels like' +body.current.feelslike +'  % the rain ')
         }
     })
 }
-if(india){
-    callback(undefined, body.current.weather_descriptions[0]+ '. its currently' +body.current.temperature+ 'degree temperatur.  it feels like' +body.current.feelslike +'  % the rain '+'and humidity is'+body.current.humidity)
-}
+
 
 module.exports = forecast
